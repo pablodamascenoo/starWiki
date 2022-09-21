@@ -5,6 +5,7 @@ export default function Input({
   name,
   type,
   disabled,
+  value,
   onChange = () => 0,
 }) {
   return (
@@ -15,6 +16,7 @@ export default function Input({
       name={name}
       disabled={disabled}
       onChange={onChange}
+      value={value}
       required
       sx={{
         "& .MuiInputLabel-root": { color: "#FFFFFF" }, //styles the label
