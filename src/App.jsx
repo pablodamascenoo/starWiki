@@ -9,6 +9,7 @@ import StarshipPage from "./pages/StarshipPage/index.jsx";
 import DetailStarshipPage from "./pages/DetailStarshipPage/index.jsx";
 import { useState } from "react";
 import UserContext from "./contexts/UserContext.js";
+import RegisterPage from "./pages/RegisterPage/index.jsx";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -20,6 +21,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/sign-in" element={<LoginPage />} />
+            <Route path="/sign-up" element={<RegisterPage />} />
             <Route path="/" element={<HomePage />} />
             <Route path="/person" element={<PersonPage />} />
             <Route path="/starships" element={<StarshipPage />} />
