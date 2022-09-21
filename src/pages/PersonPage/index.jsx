@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Card from "../../components/Card/index.jsx";
 import { User } from "phosphor-react";
 import { Button } from "@mui/material";
@@ -8,7 +8,7 @@ import { Button } from "@mui/material";
 export default function PersonPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [people, setPeople] = useState();
-  const [query, setQuery] = useState(searchParams.get("page"));
+  const [query, setQuery] = useState(searchParams.get("page") || "1");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function PersonPage() {
   }, [query]);
 
   return (
-    <div className="h-screen bg-black overflow-scroll ">
+    <div className="h-screen bg-black overflow-y-scroll ">
       <h1 className="text-4xl text-[#ee1739] text-center my-10 ">People</h1>
       <div className="flex flex-wrap justify-center gap-5 mx-20">
         {people?.results.map((person, index) => (
@@ -53,11 +53,12 @@ export default function PersonPage() {
         >
           prev
         </Button>
+        <p className="text-[#ee1739]">page {query}</p>
         <Button
           disabled={!people?.next}
           onClick={() => {
             setQuery(Number(query) + 1);
-            navigate(`/person/?page=${query}`);
+            navigate(`/person/?page=${Number(query) + 1}`);
           }}
           variant="contained"
         >

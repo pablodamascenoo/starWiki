@@ -28,18 +28,10 @@ export default function HomePage() {
         <Button
           variant="contained"
           onClick={() => {
-            redirectPage("weapons");
+            redirectPage("starships");
           }}
         >
-          Weapons
-        </Button>
-        <Button
-          variant="contained"
-          onClick={() => {
-            redirectPage("ships");
-          }}
-        >
-          Ships
+          Starships
         </Button>
       </div>
     </div>

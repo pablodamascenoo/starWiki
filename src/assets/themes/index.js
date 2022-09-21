@@ -7,7 +7,7 @@ export const theme = createTheme({
     },
     secondary: {
       contrastText: "#6D676E",
-      main: "#FFC74E",
+      main: "#FFFFFF",
     },
     text: {
       primary: "#6D676E",
