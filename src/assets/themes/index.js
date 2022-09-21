@@ -17,5 +17,8 @@ export const theme = createTheme({
       disabledBackground: "#6D676E",
       disabled: "#fff",
     },
+    background: {
+      paper: "#6D676E",
+    },
   },
 });
