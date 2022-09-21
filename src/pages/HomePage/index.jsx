@@ -20,7 +20,7 @@ export default function HomePage() {
         <Button
           variant="contained"
           onClick={() => {
-            redirectPage("persons");
+            redirectPage("person");
           }}
         >
           Persons

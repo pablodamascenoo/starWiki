@@ -13,5 +13,9 @@ export const theme = createTheme({
       primary: "#6D676E",
       secondary: "#6D676E",
     },
+    action: {
+      disabledBackground: "#6D676E",
+      disabled: "#fff",
+    },
   },
 });
