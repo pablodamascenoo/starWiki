@@ -6,8 +6,9 @@ import {
   Avatar,
   Button,
   CircularProgress,
+  Fab,
 } from "@mui/material";
-import { Rocket } from "phosphor-react";
+import { CaretLeft, Rocket } from "phosphor-react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -31,6 +32,15 @@ export default function StarshipPage() {
 
   return (
     <div className="bg-black h-screen flex flex-col items-center justify-center overflow-scroll ">
+      <Fab
+        color="primary"
+        onClick={() => {
+          navigate("/");
+        }}
+        sx={{ top: "30px", left: "30px", position: "absolute" }}
+      >
+        <CaretLeft color="black" size={25} />
+      </Fab>
       <h1 className="text-4xl text-[#ee1739] text-center mt-40 ">Starships</h1>
       {!starships ? (
         <CircularProgress sx={{ marginTop: "20px" }} />
