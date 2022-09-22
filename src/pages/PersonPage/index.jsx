@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Card from "../../components/Card/index.jsx";
 import { User } from "phosphor-react";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 
 export default function PersonPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -26,20 +26,24 @@ export default function PersonPage() {
     <div className="h-screen bg-black overflow-y-scroll ">
       <h1 className="text-4xl text-[#ee1739] text-center my-10 ">People</h1>
       <div className="flex flex-wrap justify-center gap-5 mx-20">
-        {people?.results.map((person, index) => (
-          <Card key={index}>
-            <div className="flex justify-between">
-              <User color="white" size={30}></User>
-              <p className="text-white text-end ">{person.name}</p>
-            </div>
-            <p className="text-white">Height: {person.height}cm</p>
-            <p className="text-white">Weight: {person.mass}kg</p>
-            <p className="text-white">Hair color: {person.hair_color}</p>
-            <p className="text-white">Skin color: {person.skin_color}</p>
-            <p className="text-white">Eye color: {person.eye_color}</p>
-            <p className="text-white">Gender: {person.gender}</p>
-          </Card>
-        ))}
+        {!people ? (
+          <CircularProgress />
+        ) : (
+          people?.results.map((person, index) => (
+            <Card key={index}>
+              <div className="flex justify-between">
+                <User color="white" size={30}></User>
+                <p className="text-white text-end ">{person.name}</p>
+              </div>
+              <p className="text-white">Height: {person.height}cm</p>
+              <p className="text-white">Weight: {person.mass}kg</p>
+              <p className="text-white">Hair color: {person.hair_color}</p>
+              <p className="text-white">Skin color: {person.skin_color}</p>
+              <p className="text-white">Eye color: {person.eye_color}</p>
+              <p className="text-white">Gender: {person.gender}</p>
+            </Card>
+          ))
+        )}
       </div>
 
       <div className="w-screen flex justify-evenly my-10">

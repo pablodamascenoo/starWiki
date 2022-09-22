@@ -5,6 +5,7 @@ import {
   ListItemAvatar,
   Avatar,
   Button,
+  CircularProgress,
 } from "@mui/material";
 import { Rocket } from "phosphor-react";
 import axios from "axios";
@@ -31,37 +32,41 @@ export default function StarshipPage() {
   return (
     <div className="bg-black h-screen flex flex-col items-center justify-center overflow-scroll ">
       <h1 className="text-4xl text-[#ee1739] text-center mt-40 ">Starships</h1>
-      <List
-        sx={{
-          width: "100%",
-          maxWidth: 500,
-          bgcolor: "background.black",
-        }}
-      >
-        {starships?.results.map((value, index) => (
-          <ListItem
-            key={index}
-            secondaryAction={
-              <Button
-                variant="text"
-                color="primary"
-                onClick={() => {
-                  navigate(`/starships/${value.url.match(/\d+/)[0]}`);
-                }}
-              >
-                details
-              </Button>
-            }
-          >
-            <ListItemAvatar>
-              <Avatar>
-                <Rocket />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary={value.name} sx={{ color: "#fff" }} />
-          </ListItem>
-        ))}
-      </List>
+      {!starships ? (
+        <CircularProgress sx={{ marginTop: "20px" }} />
+      ) : (
+        <List
+          sx={{
+            width: "100%",
+            maxWidth: 500,
+            bgcolor: "background.black",
+          }}
+        >
+          {starships?.results.map((value, index) => (
+            <ListItem
+              key={index}
+              secondaryAction={
+                <Button
+                  variant="text"
+                  color="primary"
+                  onClick={() => {
+                    navigate(`/starships/${value.url.match(/\d+/)[0]}`);
+                  }}
+                >
+                  details
+                </Button>
+              }
+            >
+              <ListItemAvatar>
+                <Avatar>
+                  <Rocket />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText primary={value.name} sx={{ color: "#fff" }} />
+            </ListItem>
+          ))}
+        </List>
+      )}
 
       <div className="w-screen flex justify-evenly my-10">
         <Button

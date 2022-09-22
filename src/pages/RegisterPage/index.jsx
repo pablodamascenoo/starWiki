@@ -1,5 +1,5 @@
 import darthIcon from "../../../public/darth-vader_icon.svg";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import Input from "../../components/Input/index.jsx";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -12,6 +12,7 @@ export default function RegisterPage() {
     password: "",
     confirmPassword: "",
   });
+  const [submited, setSubmited] = useState(false);
 
   function handleChange(e) {
     register[e.target.name] = e.target.value;
@@ -20,6 +21,7 @@ export default function RegisterPage() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    setSubmited(true);
 
     const promisse = api.post("sign-up", { ...register });
 
@@ -29,6 +31,7 @@ export default function RegisterPage() {
 
     promisse.catch((error) => {
       alert(error.response.data);
+      setSubmited(false);
     });
   }
 
@@ -43,6 +46,7 @@ export default function RegisterPage() {
           name="email"
           value={register.email}
           onChange={handleChange}
+          disabled={submited}
         />
         <Input
           label="password"
@@ -50,6 +54,7 @@ export default function RegisterPage() {
           name="password"
           value={register.password}
           onChange={handleChange}
+          disabled={submited}
         />
         <Input
           label="confirm password"
@@ -57,9 +62,10 @@ export default function RegisterPage() {
           name="confirmPassword"
           value={register.confirmPassword}
           onChange={handleChange}
+          disabled={submited}
         />
-        <Button variant="contained" type="submit">
-          Create account
+        <Button variant="contained" type="submit" disabled={submited}>
+          {submited ? <CircularProgress /> : "Create account"}
         </Button>
       </form>
       <Button

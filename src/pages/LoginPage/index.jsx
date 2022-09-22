@@ -1,5 +1,5 @@
 import darthIcon from "../../../public/darth-vader_icon.svg";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import Input from "../../components/Input/index.jsx";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
@@ -9,6 +9,7 @@ import UserContext from "../../contexts/UserContext.js";
 export default function LoginPage() {
   const navigate = useNavigate();
   const [login, setLogin] = useState({ email: "", password: "" });
+  const [submited, setSubmited] = useState(false);
   const { setToken } = useContext(UserContext);
 
   function handleChange(e) {
@@ -18,6 +19,7 @@ export default function LoginPage() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    setSubmited(true);
 
     const promisse = api.post("sign-in", { ...login });
 
@@ -30,6 +32,7 @@ export default function LoginPage() {
 
     promisse.catch((error) => {
       alert(error.response.data);
+      setSubmited(false);
     });
   }
 
@@ -44,6 +47,7 @@ export default function LoginPage() {
           name="email"
           value={login.email}
           onChange={handleChange}
+          disabled={submited}
         />
         <Input
           label="password"
@@ -51,10 +55,10 @@ export default function LoginPage() {
           name="password"
           value={login.password}
           onChange={handleChange}
+          disabled={submited}
         />
-        <Button variant="contained" type="submit">
-          {" "}
-          Enter{" "}
+        <Button variant="contained" type="submit" disabled={submited}>
+          {submited ? <CircularProgress /> : "Enter"}
         </Button>
       </form>
       <Button
