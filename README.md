@@ -32,7 +32,7 @@ $ cd starWiki
 $ npm i
 ```
 
-Follow the .env.example to create your own .env
+Follow the [.env.example](.env.example) to create your own .env
 
 ## Usage:
 
