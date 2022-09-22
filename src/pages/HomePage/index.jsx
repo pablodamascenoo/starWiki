@@ -9,7 +9,7 @@ export default function HomePage() {
   }
 
   return (
-    <div className="h-screen bg-black  flex flex-col items-center">
+    <div className="h-screen bg-black  flex flex-col items-center justify-center">
       <h1 className="text-6xl text-[#ee1739] pt-10 text-center font-bold animate-fade-in ">
         Welcome to Star Wiki
       </h1>

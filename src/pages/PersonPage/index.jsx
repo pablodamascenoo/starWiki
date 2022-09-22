@@ -23,7 +23,7 @@ export default function PersonPage() {
   }, [query]);
 
   return (
-    <div className="h-screen bg-black overflow-y-scroll ">
+    <div className="h-screen bg-black overflow-y-scroll overflow-x-hidden ">
       <Fab
         color="primary"
         onClick={() => {

@@ -31,7 +31,7 @@ export default function StarshipPage() {
   }, [query]);
 
   return (
-    <div className="bg-black h-screen flex flex-col items-center justify-center overflow-scroll ">
+    <div className="bg-black h-screen flex flex-col items-center justify-center overflow-y-scroll overflow-x-hidden ">
       <Fab
         color="primary"
         onClick={() => {
